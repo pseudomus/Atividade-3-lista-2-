@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Definir Meta</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .header {
+            background-color: #e0e0e0;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .header .menu {
+            display: flex;
+            gap: 20px;
+        }
+        .main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 60px);
+        }
+        .goal-container {
+            background-color: #e0e0e0;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .goal-container label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        .goal-container input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .goal-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #d0d0d0;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .goal-container button:hover {
+            background-color: #c0c0c0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">Logo</div>
+        <div class="menu">
+            <div>Bem vindo: Nome Usuário</div>
+            <div>Sair</div>
+        </div>
+    </div>
+    <div class="main">
+        <div class="goal-container">
+            <label for="meta">Defina a sua meta:</label>
+            <input type="text" id="meta" name="meta">
+            <button type="submit">Definir</button>
+        </div>
+    </div>
+</body>
+</html>
