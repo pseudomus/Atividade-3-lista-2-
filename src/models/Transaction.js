@@ -1,42 +1,38 @@
 const { DataTypes } = require('sequelize');
-const database = require('../db');
-const Usuario = require('./usuario');
+const sequelize = require('../db');
+const User = require('./User');
 
-const Transacao = database.define('transacao', {
-    
+const Transaction = sequelize.define('Transaction', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
     },
-
     amount: {
         type: DataTypes.DECIMAL(10, 2),
         allowNull: false,
     },
-
+    date: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW,
+    },
     description: {
         type: DataTypes.TEXT,
     },
-
-    data: {
-        type: DataTypes.DATE,
-        allowNull: false,
-    },
-
-    tipo: {
-        type: DataTypes.STRING,
-    },
-
     userId: {
         type: DataTypes.INTEGER,
         references: {
-            model: Usuario,
+            model: User,
             key: 'id',
         },
         allowNull: false,
-    }
-
+    },
+}, {
+    timestamps: true, 
 });
 
-module.exports = Transacao;
+User.hasMany(Transaction, { foreignKey: 'userId' });
+Transaction.belongsTo(User, { foreignKey: 'userId' });
+
+module.exports = Transaction;
