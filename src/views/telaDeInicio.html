@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .header {
+            background-color: #e0e0e0;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .header .menu {
+            display: flex;
+            gap: 20px;
+        }
+        .main {
+            padding: 20px;
+        }
+        .goal {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .goal span {
+            margin-right: 10px;
+        }
+        .charts {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .chart {
+            background-color: #d0d0d0;
+            flex: 1;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
+        .expenses {
+            background-color: #ffffff;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .expenses-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .expenses-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .expense-item {
+            background-color: #e0e0e0;
+            margin-bottom: 5px;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 5px;
+        }
+        .expense-item:last-child {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">Logo</div>
+        <div class="menu">
+            <div>Bem vindo: Nome Usuário</div>
+            <div>Ajustes</div>
+            <div>Sair</div>
+        </div>
+    </div>
+    <div class="main">
+        <div class="goal">
+            <span>Meta: Meta do usuário</span>
+            <button>✏️</button>
+        </div>
+        <div class="charts">
+            <div class="chart">Gráfico</div>
+            <div class="chart">Gráfico</div>
+            <div class="chart">Gráfico</div>
+            <div class="chart">Gráfico</div>
+        </div>
+        <div class="expenses">
+            <div class="expenses-header">
+                <span>Despesas</span>
+                <button>➕</button>
+            </div>
+            <ul class="expenses-list">
+                <li class="expense-item">
+                    <span>Despesa 1</span>
+                    <div>
+                        <button>✏️</button>
+                        <button>🗑️</button>
+                    </div>
+                </li>
+                <li class="expense-item">
+                    <span>Despesa 2</span>
+                    <div>
+                        <button>✏️</button>
+                        <button>🗑️</button>
+                    </div>
+                </li>
+                <li class="expense-item">
+                    <span>Despesa 3</span>
+                    <div>
+                        <button>✏️</button>
+                        <button>🗑️</button>
+                    </div>
+                </li>
+                <!-- Add more expense items as needed -->
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
