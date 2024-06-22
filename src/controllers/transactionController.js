@@ -1,8 +1,16 @@
 const { body, validationResult } = require('express-validator');
 const Transaction = require('../models/Transaction');
+const FinancialGoal = require('../models/FinancialGoal');
 
 exports.getTelaDeInicio = async (req, res) => {
     try {
+
+        const goals = await FinancialGoal.findAll({ where: { userId: req.user.id } });
+
+        if (goals.length === 0) {
+            return res.redirect('/goals/new');
+        }
+        
         const transactions = await Transaction.findAll({ where: { userId: req.session.userId } });
         res.render('telaDeInicio', {
             user: { username: req.session.username },

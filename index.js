@@ -3,8 +3,9 @@ const mustacheExpress = require('mustache-express');
 const session = require('express-session');
 const sequelize = require('./src/db');
 const authRoutes = require('./src/routes/authRoutes');
-const mainRoutes = require('./src/routes/mainRoutes');
+const goalRoutes = require('./src/routes/goalRoutes');
 const transactionRoutes = require('./src/routes/transactionRoutes');
+const mainRoutes = require('./src/routes/mainRoutes');
 
 const app = express();
 const PORT = 8080;
@@ -21,9 +22,10 @@ app.use(session({
     saveUninitialized: false,
 }));
 
+app.use('/', goalRoutes);
 app.use('/', authRoutes);
-// app.use('/', mainRoutes);
 app.use('/', transactionRoutes);
+app.use('/', mainRoutes);
 
 sequelize.authenticate()
     .then(() => {

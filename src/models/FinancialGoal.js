@@ -10,7 +10,7 @@ const FinancialGoal = sequelize.define('FinancialGoal', {
     },
     title: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     description: {
         type: DataTypes.TEXT,
