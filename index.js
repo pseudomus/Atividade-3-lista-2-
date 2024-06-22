@@ -26,7 +26,7 @@ app.use('/', mainRoutes);
 sequelize.authenticate()
     .then(() => {
         console.log('Conectado ao banco de dados');
-        return sequelize.sync({ force: true }); 
+        return sequelize.sync({ force: true });
     })
     .then(async () => {
         console.log('Modelos sincronizados com sucesso');
