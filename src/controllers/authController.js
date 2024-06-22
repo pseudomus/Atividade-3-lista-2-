@@ -82,3 +82,29 @@ exports.postRegister = [
         }
     }
 ];
+
+exports.updateProfile = async (req, res) => {
+    try {
+        const { username, email, password } = req.body;
+        const userId = req.user.id; // Supondo que o middleware de autenticação adiciona o ID do usuário ao objeto de request
+
+        const user = await User.findById(userId);
+        if (!user) {
+            return res.status(404).json({ success: false, message: 'Usuário não encontrado' });
+        }
+
+        if (username) user.username = username;
+        if (email) user.email = email;
+        if (password) user.password = await bcrypt.hash(password, 10);  // Você pode querer adicionar hashing aqui
+
+        await user.save();
+        res.redirect('/');
+
+        res.json({ success: true, message: 'Perfil atualizado com sucesso' });
+        console.log('Perfil atualizado');
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, message: 'Erro ao atualizar perfil' });
+        console.log('Erro ao atualizar o perfil');
+    }
+};

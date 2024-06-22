@@ -1,6 +1,7 @@
 const express = require('express');
 const mustacheExpress = require('mustache-express');
 const session = require('express-session');
+const path = require('path'); 
 const sequelize = require('./src/db');
 const authRoutes = require('./src/routes/authRoutes');
 const mainRoutes = require('./src/routes/mainRoutes');
@@ -12,12 +13,15 @@ app.engine('html', mustacheExpress());
 app.set('view engine', 'html');
 app.set('views', __dirname + '/src/views');
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.use(session({
     secret: 'your-secret-key',
     resave: false,
     saveUninitialized: false,
 }));
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', authRoutes);
 app.use('/', mainRoutes);
