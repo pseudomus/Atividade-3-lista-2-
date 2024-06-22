@@ -92,7 +92,8 @@
     </div>
     <div class="main">
         <div class="goal">
-            <span>Meta: Meta do usuário</span>
+            <span>Meta: {{ goal.description }}</span>
+            <span>Valor Alvo: R$ {{ goal.targetAmount }}</span>
             <button>✏️</button>
         </div>
         <div class="charts">

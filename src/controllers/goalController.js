@@ -5,16 +5,14 @@ exports.getCreateGoal = (req, res) => {
 };
 
 exports.postCreateGoal = async (req, res) => {
-    const { name, targetAmount, currentAmount, deadline } = req.body;
+    const { description, targetAmount } = req.body;
     const userId = req.user.id;
 
     try {
         await FinancialGoal.create({
-            name,
+            description,
             targetAmount,
-            currentAmount,
-            deadline,
-            userId
+            userId,
         });
         res.redirect('/telaDeInicio');
     } catch (error) {

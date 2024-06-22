@@ -4,21 +4,21 @@ const FinancialGoal = require('../models/FinancialGoal');
 
 exports.getTelaDeInicio = async (req, res) => {
     try {
-
-        const goals = await FinancialGoal.findAll({ where: { userId: req.user.id } });
-
-        if (goals.length === 0) {
-            return res.redirect('/goals/new');
+        const transactions = await Transaction.findAll({ where: { userId: req.user.id } });
+        const goal = await FinancialGoal.findOne({ where: { userId: req.user.id } });
+    
+        if (!goal) {
+           return res.redirect('/goals/new');
         }
-        
-        const transactions = await Transaction.findAll({ where: { userId: req.session.userId } });
-        res.render('telaDeInicio', {
-            user: { username: req.session.username },
-            transactions
+    
+        res.render('telaDeInicio', { 
+            user: req.user, 
+            transactions: transactions.map(transaction => transaction.toJSON()), 
+            goal: goal.toJSON() 
         });
     } catch (error) {
-        console.error('Error fetching transactions:', error);
-        res.status(500).send('Erro ao buscar transações');
+        console.error('Erro ao carregar tela de início:', error);
+        res.status(500).send('Erro ao carregar tela de início');
     }
 };
 
