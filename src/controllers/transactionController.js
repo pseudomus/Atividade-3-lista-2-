@@ -62,3 +62,39 @@ exports.deleteTransaction = async (req, res) => {
         res.status(500).send('Erro ao excluir a transação');
     }
 };
+
+exports.getEditTransaction = async (req, res) => {
+    const transactionId = req.params.id;
+
+    try {
+        const transaction = await Transaction.findByPk(transactionId);
+        if (transaction) {
+            res.render('editTransaction', { transaction: transaction.toJSON() });
+        } else {
+            res.status(404).send('Transação não encontrada');
+        }
+    } catch (error) {
+        console.error('Erro ao carregar a transação:', error);
+        res.status(500).send('Erro ao carregar a transação');
+    }
+};
+
+exports.postEditTransaction = async (req, res) => {
+    const transactionId = req.params.id;
+    const { amount, description } = req.body;
+
+    try {
+        const transaction = await Transaction.findByPk(transactionId);
+        if (transaction) {
+            transaction.amount = amount;
+            transaction.description = description;
+            await transaction.save();
+            res.redirect('/telaDeInicio');
+        } else {
+            res.status(404).send('Transação não encontrada');
+        }
+    } catch (error) {
+        console.error('Erro ao atualizar a transação:', error);
+        res.status(500).send('Erro ao atualizar a transação');
+    }
+};

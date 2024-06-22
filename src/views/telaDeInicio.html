@@ -111,6 +111,7 @@
                 <li class="expense-item">
                     <span>Valor: {{amount}}</span>
                     <span>Descrição: {{description}}</span>
+                    <a href="/transactions/edit/{{id}}">✏️</a>
                     <form action="/transactions/delete/{{id}}" method="post" style="display:inline;">
                         <button type="submit">🗑️</button>
                     </form>
