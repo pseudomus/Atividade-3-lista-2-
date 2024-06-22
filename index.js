@@ -4,6 +4,7 @@ const session = require('express-session');
 const sequelize = require('./src/db');
 const authRoutes = require('./src/routes/authRoutes');
 const mainRoutes = require('./src/routes/mainRoutes');
+const transactionRoutes = require('./src/routes/transactionRoutes');
 
 const app = express();
 const PORT = 8080;
@@ -21,7 +22,8 @@ app.use(session({
 }));
 
 app.use('/', authRoutes);
-app.use('/', mainRoutes);
+// app.use('/', mainRoutes);
+app.use('/', transactionRoutes);
 
 sequelize.authenticate()
     .then(() => {

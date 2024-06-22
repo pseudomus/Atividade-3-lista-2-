@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Tela de Início</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -87,7 +87,7 @@
         <div class="menu">
             <div>Bem vindo: {{ user.username }}!</div>
             <div>Ajustes</div>
-            <a href="/logout">sair</a>
+            <a href="/logout">Sair</a>
         </div>
     </div>
     <div class="main">
@@ -104,31 +104,18 @@
         <div class="expenses">
             <div class="expenses-header">
                 <span>Despesas</span>
-                <button>➕</button>
+                <a href="/transactions/new">➕</a>
             </div>
             <ul class="expenses-list">
+                {{#transactions}}
                 <li class="expense-item">
-                    <span>Despesa 1</span>
-                    <div>
-                        <button>✏️</button>
-                        <button>🗑️</button>
-                    </div>
+                    <span>Valor: {{amount}}</span>
+                    <span>Descrição: {{description}}</span>
+                    <form action="/transactions/delete/{{id}}" method="post" style="display:inline;">
+                        <button type="submit">🗑️</button>
+                    </form>
                 </li>
-                <li class="expense-item">
-                    <span>Despesa 2</span>
-                    <div>
-                        <button>✏️</button>
-                        <button>🗑️</button>
-                    </div>
-                </li>
-                <li class="expense-item">
-                    <span>Despesa 3</span>
-                    <div>
-                        <button>✏️</button>
-                        <button>🗑️</button>
-                    </div>
-                </li>
-                <!-- Add more expense items as needed -->
+                {{/transactions}}
             </ul>
         </div>
     </div>
