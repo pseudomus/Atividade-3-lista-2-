@@ -54,10 +54,13 @@
 </head>
 <body>
 <div class="login-container">
+    {{#errors}}
+        <div style="color: red;">{{msg}}</div>
+    {{/errors}}
     <h2>Login</h2>
     <form method="post" action="/login">
-        <input type="email" name="Email" placeholder="Email" required>
-        <input type="password" name="Senha" placeholder="Senha" required>
+        <input type="email" name="email" placeholder="email" required>
+        <input type="password" name="password" placeholder="password" required>
         <button type="submit">Login</button>
     </form>
     <p>Não possui uma conta? <a href="/register">Criar Conta</a></p>

@@ -55,12 +55,14 @@
 </head>
 <body>
 <div class="register-container">
+    {{#errors}}
+        <div style="color: red;">{{msg}}</div>
+    {{/errors}}
     <h2>Criar Conta</h2>
     <form method="post" action="/register">
-        <input type="text" name="Nome" placeholder="Nome" required>
-        <input type="text" name="Sobrenome" placeholder="Sobrenome" required>
-        <input type="email" name="Email" placeholder="Email" required>
-        <input type="password" name="Senha" placeholder="Senha" required>
+        <input type="text" id="username" name="username" required>
+        <input type="email" name="email" placeholder="email" required>
+        <input type="password" name="password" placeholder="password" required>
         <button type="submit">Registrar</button>
     </form>
     <p>Já possui uma conta? <a href="/login">Fazer Login</a></p>
