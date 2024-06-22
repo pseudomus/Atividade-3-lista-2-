@@ -31,6 +31,7 @@ exports.postLogin = [
             }
 
             req.session.userId = user.id; // Armazena o ID do usuário na sessão
+            
             res.redirect('/telaDeInicio');
         } catch (error) {
             console.error('Error logging in user:', error);

@@ -20,6 +20,7 @@ const Transaction = sequelize.define('Transaction', {
     description: {
         type: DataTypes.TEXT,
     },
+    
     userId: {
         type: DataTypes.INTEGER,
         references: {
