@@ -1,6 +1,7 @@
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
 const User = require('../models/User');
+const { Op } = require('sequelize');
 
 exports.getLogin = (req, res) => {
     res.render('login', { errors: [] });
@@ -83,28 +84,46 @@ exports.postRegister = [
     }
 ];
 
-exports.updateProfile = async (req, res) => {
-    try {
-        const { username, email, password } = req.body;
-        const userId = req.user.id; // Supondo que o middleware de autenticação adiciona o ID do usuário ao objeto de request
+exports.updateProfile = [
+    body('username').trim().notEmpty().withMessage('Nome de usuário é obrigatório'),
+    body('email').isEmail().withMessage('Email inválido'),
+    body('password').isLength({ min: 6 }).withMessage('A senha deve ter pelo menos 6 caracteres'),
 
-        const user = await User.findById(userId);
-        if (!user) {
-            return res.status(404).json({ success: false, message: 'Usuário não encontrado' });
+    async (req, res) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            console.log('Validation errors:', errors.array());
+            return res.render('telaDePerfil', { errors: errors.array() });
         }
 
-        if (username) user.username = username;
-        if (email) user.email = email;
-        if (password) user.password = await bcrypt.hash(password, 10);  // Você pode querer adicionar hashing aqui
+        const { username, email, password } = req.body;
+        const userId = req.session.userId; // Supondo que o ID do usuário é armazenado na sessão
 
-        await user.save();
-        res.redirect('/');
+        try {
+            const user = await User.findByPk(userId);
+            if (!user) {
+                console.log('User not found:', userId);
+                return res.render('telaDePerfil', { errors: [{ msg: 'Usuário não encontrado' }] });
+            }
 
-        res.json({ success: true, message: 'Perfil atualizado com sucesso' });
-        console.log('Perfil atualizado');
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ success: false, message: 'Erro ao atualizar perfil' });
-        console.log('Erro ao atualizar o perfil');
+            // Verificar se o email já está em uso por outro usuário
+            const existingEmail = await User.findOne({ where: { email, id: { [Op.ne]: userId } } });
+            if (existingEmail) {
+                console.log('Email already in use:', email);
+                return res.render('telaDePerfil', { errors: [{ msg: 'Email já está em uso' }] });
+            }
+
+            if (username) user.username = username;
+            if (email) user.email = email;
+            if (password) user.password = await bcrypt.hash(password, 10);
+
+            await user.save();
+
+            console.log('User profile updated successfully:', username);
+            res.redirect('/');
+        } catch (error) {
+            console.error('Error updating user profile:', error);
+            res.status(500).send('Erro ao atualizar perfil');
+        }
     }
-};
+];

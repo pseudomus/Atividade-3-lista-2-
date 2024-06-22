@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulário de Usuário</title>
+    <title>Formulário de Ajustes do Usuário</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -37,9 +37,12 @@
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
         }
         .form-group {
             margin-bottom: 15px;
+            text-align: left;
         }
         .form-group label {
             display: block;
@@ -67,6 +70,10 @@
         .form-group button:hover {
             background-color: #c0c0c0;
         }
+        .error {
+            color: red;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -80,23 +87,29 @@
     </div>
     <div class="main">
         <div class="form-container">
-            <div class="form-group">
-                <label for="username">Nome de Usuário</label>
-                <input type="text" id="username" name="username">
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email">
-            </div>
-            <div class="form-group">
-                <label for="password">Senha</label>
-                <input type="password" id="password" name="password">
-            </div>
-            <div class="form-group">
-                <button id="saveButton" type="button">Salvar</button>
-            </div>
+            <h2>Atualizar Perfil</h2>
+            {{#errors}}
+                <div class="error">{{msg}}</div>
+            {{/errors}}
+            <form method="post" action="/updateProfile">
+                <div class="form-group">
+                    <label for="username">Nome de Usuário</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Salvar</button>
+                </div>
+            </form>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script src="/script.js"></script>
 </body>
 </html>
