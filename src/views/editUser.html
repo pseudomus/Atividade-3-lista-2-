@@ -11,6 +11,27 @@
             padding: 0;
             background-color: #f0f0f0;
         }
+        .header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .header .menu {
+            display: flex;
+            gap: 20px;
+            padding-right: 40px;
+        }
         .container {
             max-width: 600px;
             margin: 50px auto;
@@ -53,6 +74,14 @@
     </style>
 </head>
 <body>
+<div class="header">
+    <div class="logo">Logo</div>
+    <div class="menu">
+        <div>Bem vindo: {{ user.username }}!</div>
+        <a href="/user/edit">Ajustes</a>
+        <a href="/logout">Sair</a>
+    </div>
+</div>
     <div class="container">
         <h2>Editar Usuário</h2>
         {{#errors}}

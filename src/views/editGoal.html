@@ -12,8 +12,13 @@
             background-color: #f0f0f0;
         }
         .header {
-            background-color: #e0e0e0;
+            background-color: #007bff;
+            color: #fff;
             padding: 10px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -25,9 +30,10 @@
         .header .menu {
             display: flex;
             gap: 20px;
+            padding-right: 40px;
         }
         .main {
-            padding: 20px;
+            padding: 100px;
         }
         form {
             background-color: #ffffff;
@@ -44,7 +50,7 @@
             margin-bottom: 5px;
         }
         input[type="text"], input[type="number"] {
-            width: 100%;
+            width: calc(100% - 20px);
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
