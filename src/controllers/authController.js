@@ -31,7 +31,7 @@ exports.postLogin = [
             }
 
             req.session.userId = user.id; // Armazena o ID do usuário na sessão
-            
+
             res.redirect('/telaDeInicio');
         } catch (error) {
             console.error('Error logging in user:', error);
@@ -83,3 +83,13 @@ exports.postRegister = [
         }
     }
 ];
+
+exports.logout = (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.error('Error destroying session:', err);
+            return res.redirect('/dashboard');
+        }
+        res.redirect('/login');
+    });
+};
