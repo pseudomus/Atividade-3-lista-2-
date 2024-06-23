@@ -1,67 +1,51 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            color: #333;
         }
         .login-container {
             background-color: #fff;
-            padding: 30px;
+            padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 400px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
             text-align: center;
         }
         .login-container h2 {
             margin-bottom: 20px;
-            color: #007bff;
         }
         .login-container input {
-            width: calc(100% - 20px); /* Adjusting the width to ensure no overflow */
-            padding: 12px;
+            width: calc(100% - 20px);;
+            padding: 10px;
             margin: 10px 0;
             border: 1px solid #ccc;
             border-radius: 5px;
-            font-size: 16px;
-            color: #333;
-        }
-        .login-container input:focus {
-            border-color: #007bff;
-            outline: none;
         }
         .login-container button {
             width: 100%;
-            padding: 15px;
+            padding: 10px;
             background-color: #007bff;
             border: none;
             color: #fff;
             border-radius: 5px;
-            font-size: 16px;
             cursor: pointer;
-            transition: background-color 0.3s;
         }
         .login-container button:disabled {
             background-color: #ccc;
         }
-        .login-container button:hover:not(:disabled) {
-            background-color: #0056b3;
-        }
         .login-container a {
             color: #007bff;
             text-decoration: none;
-            display: inline-block;
-            margin-top: 15px;
         }
         .login-container a:hover {
             text-decoration: underline;
@@ -69,14 +53,17 @@
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <h2>Login</h2>
-        <form method="post" action="/login">
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <button type="submit">Login</button>
-        </form>
-        <p>Não possui uma conta? <a href="/register">Criar Conta</a></p>
-    </div>
+<div class="login-container">
+    {{#errors}}
+        <div style="color: red;">{{msg}}</div>
+    {{/errors}}
+    <h2>Login</h2>
+    <form method="post" action="/login">
+        <input type="email" name="email" placeholder="email" required>
+        <input type="password" name="password" placeholder="password" required>
+        <button type="submit">Login</button>
+    </form>
+    <p>Não possui uma conta? <a href="/register">Criar Conta</a></p>
+</div>
 </body>
 </html>
