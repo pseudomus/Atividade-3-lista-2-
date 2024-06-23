@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Tela de Início</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,8 +12,13 @@
             background-color: #f0f0f0;
         }
         .header {
-            background-color: #e0e0e0;
+            background-color: #007bff;
+            color: #fff;
             padding: 10px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -25,6 +30,7 @@
         .header .menu {
             display: flex;
             gap: 20px;
+            padding-right: 40px;
         }
         .main {
             padding: 20px;
@@ -86,14 +92,15 @@
         <div class="logo">Logo</div>
         <div class="menu">
             <div>Bem vindo: {{ user.username }}!</div>
-            <div>Ajustes</div>
-            <div>Sair</div>
+            <a href="/user/edit">Ajustes</a>
+            <a href="/logout">Sair</a>
         </div>
     </div>
     <div class="main">
         <div class="goal">
-            <span>Meta: Meta do usuário</span>
-            <button>✏️</button>
+            <span>Meta: {{ goal.description }}</span>
+            <span>Valor Alvo: R$ {{ goal.targetAmount }}</span>
+            <a href="/goals/edit">✏️</a>
         </div>
         <div class="charts">
             <div class="chart">Gráfico</div>
@@ -104,31 +111,19 @@
         <div class="expenses">
             <div class="expenses-header">
                 <span>Despesas</span>
-                <button>➕</button>
+                <a href="/transactions/new">➕</a>
             </div>
             <ul class="expenses-list">
+                {{#transactions}}
                 <li class="expense-item">
-                    <span>Despesa 1</span>
-                    <div>
-                        <button>✏️</button>
-                        <button>🗑️</button>
-                    </div>
+                    <span>Valor: {{amount}}</span>
+                    <span>Descrição: {{description}}</span>
+                    <a href="/transactions/edit/{{id}}">✏️</a>
+                    <form action="/transactions/delete/{{id}}" method="post" style="display:inline;">
+                        <button type="submit">🗑️</button>
+                    </form>
                 </li>
-                <li class="expense-item">
-                    <span>Despesa 2</span>
-                    <div>
-                        <button>✏️</button>
-                        <button>🗑️</button>
-                    </div>
-                </li>
-                <li class="expense-item">
-                    <span>Despesa 3</span>
-                    <div>
-                        <button>✏️</button>
-                        <button>🗑️</button>
-                    </div>
-                </li>
-                <!-- Add more expense items as needed -->
+                {{/transactions}}
             </ul>
         </div>
     </div>

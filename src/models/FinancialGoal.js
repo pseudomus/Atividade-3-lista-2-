@@ -8,24 +8,12 @@ const FinancialGoal = sequelize.define('FinancialGoal', {
         autoIncrement: true,
         primaryKey: true,
     },
-    title: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
     description: {
         type: DataTypes.TEXT,
     },
     targetAmount: {
         type: DataTypes.DECIMAL(10, 2),
         allowNull: false,
-    },
-    deadline: {
-        type: DataTypes.DATE,
-        allowNull: false,
-    },
-    status: {
-        type: DataTypes.ENUM('pending', 'achieved', 'failed'),
-        defaultValue: 'pending',
     },
     userId: {
         type: DataTypes.INTEGER,

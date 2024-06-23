@@ -3,7 +3,10 @@ const mustacheExpress = require('mustache-express');
 const session = require('express-session');
 const sequelize = require('./src/db');
 const authRoutes = require('./src/routes/authRoutes');
+const goalRoutes = require('./src/routes/goalRoutes');
+const transactionRoutes = require('./src/routes/transactionRoutes');
 const mainRoutes = require('./src/routes/mainRoutes');
+const userRoutes = require('./src/routes/userRoutes');
 
 const app = express();
 const PORT = 8080;
@@ -20,13 +23,16 @@ app.use(session({
     saveUninitialized: false,
 }));
 
+app.use('/', goalRoutes);
 app.use('/', authRoutes);
+app.use('/', transactionRoutes);
 app.use('/', mainRoutes);
+app.use('/', userRoutes);
 
 sequelize.authenticate()
     .then(() => {
         console.log('Conectado ao banco de dados');
-        return sequelize.sync({ force: true }); 
+        return sequelize.sync({ force: true });
     })
     .then(async () => {
         console.log('Modelos sincronizados com sucesso');

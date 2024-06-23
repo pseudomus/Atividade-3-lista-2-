@@ -13,6 +13,26 @@
             height: 100vh;
             margin: 0;
         }
+
+        .header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 30px 0px;
+            text-align: end;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+        }
+        .header a {
+            color: #fff;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+        .header a:hover {
+            text-decoration: underline;
+        }
+
         .login-container {
             background-color: #fff;
             padding: 20px;
@@ -25,7 +45,7 @@
             margin-bottom: 20px;
         }
         .login-container input {
-            width: calc(100% - 20px);;
+            width: calc(100% - 20px);
             padding: 10px;
             margin: 10px 0;
             border: 1px solid #ccc;
@@ -53,6 +73,11 @@
     </style>
 </head>
 <body>
+<div class="header">
+    <a href="/">Home</a>
+    <a href="/register">Registrar</a>
+    <a href="/login">Login</a>
+</div>
 <div class="login-container">
     {{#errors}}
         <div style="color: red;">{{msg}}</div>
