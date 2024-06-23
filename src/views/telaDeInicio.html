@@ -6,15 +6,16 @@
     <title>Tela de Início</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
+            background-color: #f4f4f4;
+            color: #333;
         }
         .header {
             background-color: #007bff;
             color: #fff;
-            padding: 10px 20px;
+            padding: 15px 20px;
             position: fixed;
             width: 100%;
             top: 0;
@@ -22,6 +23,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            z-index: 1000;
         }
         .header .logo {
             font-size: 24px;
@@ -32,41 +34,84 @@
             gap: 20px;
             padding-right: 40px;
         }
+        .header .menu a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .header .menu a:hover {
+            color: #ddd;
+        }
         .main {
-            padding: 20px;
+            padding: 100px 20px 20px 20px;
         }
         .goal {
-            display: flex;
-            align-items: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
         .goal span {
-            margin-right: 10px;
+            font-size: 18px;
+            color: #555;
+        }
+        .goal a {
+            align-self: flex-start;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .goal a:hover {
+            background-color: #0056b3;
         }
         .charts {
             display: flex;
+            flex-wrap: wrap;
             gap: 10px;
             margin-bottom: 20px;
         }
         .chart {
-            background-color: #d0d0d0;
-            flex: 1;
+            background-color: #fff;
+            flex: 1 1 calc(25% - 10px);
             height: 150px;
             display: flex;
             justify-content: center;
             align-items: center;
             font-weight: bold;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         .expenses {
-            background-color: #ffffff;
-            padding: 10px;
-            border-radius: 5px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         .expenses-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 10px;
+            font-size: 18px;
+            color: #555;
+        }
+        .expenses-header a {
+            background-color: #28a745;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .expenses-header a:hover {
+            background-color: #218838;
         }
         .expenses-list {
             list-style: none;
@@ -74,16 +119,42 @@
             margin: 0;
         }
         .expense-item {
-            background-color: #e0e0e0;
-            margin-bottom: 5px;
+            background-color: #f8f9fa;
+            margin-bottom: 10px;
             padding: 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-radius: 5px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         }
-        .expense-item:last-child {
-            margin-bottom: 0;
+        .expense-item span {
+            font-size: 16px;
+            color: #555;
+        }
+        .expense-item a {
+            background-color: #ffc107;
+            color: #fff;
+            padding: 5px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-left: 5px;
+            transition: background-color 0.3s;
+        }
+        .expense-item a:hover {
+            background-color: #e0a800;
+        }
+        .expense-item form button {
+            background-color: #dc3545;
+            color: #fff;
+            padding: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .expense-item form button:hover {
+            background-color: #c82333;
         }
     </style>
 </head>
@@ -100,23 +171,23 @@
         <div class="goal">
             <span>Meta: {{ goal.description }}</span>
             <span>Valor Alvo: R$ {{ goal.targetAmount }}</span>
-            <a href="/goals/edit">✏️</a>
+            <a href="/goals/edit">✏️ Editar Meta</a>
         </div>
         <div class="charts">
-            <div class="chart">Gráfico</div>
-            <div class="chart">Gráfico</div>
-            <div class="chart">Gráfico</div>
-            <div class="chart">Gráfico</div>
+            <div class="chart">Gráfico 1</div>
+            <div class="chart">Gráfico 2</div>
+            <div class="chart">Gráfico 3</div>
+            <div class="chart">Gráfico 4</div>
         </div>
         <div class="expenses">
             <div class="expenses-header">
                 <span>Despesas</span>
-                <a href="/transactions/new">➕</a>
+                <a href="/transactions/new">➕ Adicionar Despesa</a>
             </div>
             <ul class="expenses-list">
                 {{#transactions}}
                 <li class="expense-item">
-                    <span>Valor: {{amount}}</span>
+                    <span>Valor: R$ {{amount}}</span>
                     <span>Descrição: {{description}}</span>
                     <a href="/transactions/edit/{{id}}">✏️</a>
                     <form action="/transactions/delete/{{id}}" method="post" style="display:inline;">

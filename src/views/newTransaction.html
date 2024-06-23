@@ -1,22 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <title>Nova Despesa</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             background-color: #f4f4f4;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
+            color: #333;
         }
         .header {
             background-color: #007bff;
             color: #fff;
-            padding: 10px 20px;
+            padding: 15px 20px;
             position: fixed;
             width: 100%;
             top: 0;
@@ -24,6 +25,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
         }
         .header .logo {
             font-size: 24px;
@@ -34,35 +37,57 @@
             gap: 20px;
             padding-right: 40px;
         }
+        .header .menu a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .header .menu a:hover {
+            color: #ddd;
+        }
         .despesa-container {
             background-color: #fff;
-            padding: 20px;
+            padding: 40px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 400px;
             text-align: center;
+            margin-top: 100px;
         }
         .despesa-container h2 {
             margin-bottom: 20px;
+            color: #007bff;
         }
         .despesa-container input {
-            width: calc(100% - 20px); /* Adjusting the width to ensure no overflow */
-            padding: 10px;
+            width: calc(100% - 20px);
+            padding: 12px;
             margin: 10px 0;
             border: 1px solid #ccc;
             border-radius: 5px;
+            font-size: 16px;
+            color: #333;
+        }
+        .despesa-container input:focus {
+            border-color: #007bff;
+            outline: none;
         }
         .despesa-container button {
             width: 100%;
-            padding: 10px;
+            padding: 15px;
             background-color: #007bff;
             border: none;
             color: #fff;
             border-radius: 5px;
+            font-size: 16px;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
         .despesa-container button:disabled {
             background-color: #ccc;
+        }
+        .despesa-container button:hover:not(:disabled) {
+            background-color: #0056b3;
         }
     </style>
 </head>
@@ -78,8 +103,8 @@
 <div class="despesa-container">
     <h2>Defina sua despesa</h2>
     <form method="post" action="/transactions">
-        <input type="text" name="amount" placeholder="amount" required>
-        <input type="text" name="description" placeholder="description" required>
+        <input type="text" name="amount" placeholder="Valor" required>
+        <input type="text" name="description" placeholder="Descrição" required>
         <button type="submit">Definir</button>
     </form>
 </div>

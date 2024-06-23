@@ -6,15 +6,16 @@
     <title>Editar Transação</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
+            background-color: #f4f4f4;
+            color: #333;
         }
         .header {
             background-color: #007bff;
             color: #fff;
-            padding: 10px 20px;
+            padding: 15px 20px;
             position: fixed;
             width: 100%;
             top: 0;
@@ -22,6 +23,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            z-index: 1000;
         }
         .header .logo {
             font-size: 24px;
@@ -32,34 +34,56 @@
             gap: 20px;
             padding-right: 40px;
         }
+        .header .menu a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .header .menu a:hover {
+            color: #ddd;
+        }
         .container {
             max-width: 500px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #ffffff;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 100px auto 20px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            margin-bottom: 20px;
+            color: #007bff;
         }
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         .form-group label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            font-size: 16px;
+            color: #555;
         }
         .form-group input {
             width: calc(100% - 20px);
-            padding: 10px;
+            padding: 12px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            font-size: 16px;
+            color: #333;
+        }
+        .form-group input:focus {
+            border-color: #007bff;
+            outline: none;
         }
         .form-group button {
-            padding: 10px 20px;
+            padding: 15px 20px;
             background-color: #4CAF50;
             color: white;
             border: none;
             border-radius: 5px;
+            font-size: 16px;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
         .form-group button:hover {
             background-color: #45a049;
@@ -67,14 +91,14 @@
     </style>
 </head>
 <body>
-<div class="header">
-    <div class="logo">Logo</div>
-    <div class="menu">
-        <div>Bem vindo: {{ user.username }}!</div>
-        <a href="/user/edit">Ajustes</a>
-        <a href="/logout">Sair</a>
+    <div class="header">
+        <div class="logo">Logo</div>
+        <div class="menu">
+            <div>Bem vindo: {{ user.username }}!</div>
+            <a href="/user/edit">Ajustes</a>
+            <a href="/logout">Sair</a>
+        </div>
     </div>
-</div>
     <div class="container">
         <h2>Editar Transação</h2>
         <form action="/transactions/edit/{{transaction.id}}" method="post">

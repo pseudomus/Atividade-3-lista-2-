@@ -6,15 +6,16 @@
     <title>Editar Meta</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
+            background-color: #f4f4f4;
+            color: #333;
         }
         .header {
             background-color: #007bff;
             color: #fff;
-            padding: 10px 20px;
+            padding: 15px 20px;
             position: fixed;
             width: 100%;
             top: 0;
@@ -22,6 +23,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            z-index: 1000;
         }
         .header .logo {
             font-size: 24px;
@@ -32,36 +34,62 @@
             gap: 20px;
             padding-right: 40px;
         }
+        .header .menu a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .header .menu a:hover {
+            color: #ddd;
+        }
         .main {
-            padding: 100px;
+            padding: 100px 20px 20px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 60px);
         }
         form {
             background-color: #ffffff;
-            padding: 20px;
-            border-radius: 5px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             max-width: 500px;
-            margin: auto;
+            width: 100%;
         }
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            font-size: 16px;
+            color: #555;
         }
         input[type="text"], input[type="number"] {
             width: calc(100% - 20px);
-            padding: 10px;
+            padding: 12px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            font-size: 16px;
+            color: #333;
+        }
+        input[type="text"]:focus, input[type="number"]:focus {
+            border-color: #007bff;
+            outline: none;
         }
         button {
             background-color: #4CAF50;
             color: white;
-            padding: 10px 20px;
+            padding: 15px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
