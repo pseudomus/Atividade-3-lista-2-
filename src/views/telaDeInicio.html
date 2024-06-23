@@ -6,14 +6,16 @@
     <title>Dashboard</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
+            background-color: #f0f2f5;
+            color: #333;
         }
         .header {
-            background-color: #e0e0e0;
-            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            padding: 15px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -30,12 +32,28 @@
             padding: 20px;
         }
         .goal {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             display: flex;
             align-items: center;
             margin-bottom: 20px;
         }
         .goal span {
             margin-right: 10px;
+            font-size: 18px;
+        }
+        .goal button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .goal button:hover {
+            background-color: #0056b3;
         }
         .charts {
             display: flex;
@@ -43,24 +61,39 @@
             margin-bottom: 20px;
         }
         .chart {
-            background-color: #d0d0d0;
+            background-color: #fff;
             flex: 1;
             height: 150px;
             display: flex;
             justify-content: center;
             align-items: center;
             font-weight: bold;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         .expenses {
-            background-color: #ffffff;
-            padding: 10px;
+            background-color: #fff;
+            padding: 20px;
             border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         .expenses-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 10px;
+            font-size: 18px;
+        }
+        .expenses-header button {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .expenses-header button:hover {
+            background-color: #218838;
         }
         .expenses-list {
             list-style: none;
@@ -68,16 +101,35 @@
             margin: 0;
         }
         .expense-item {
-            background-color: #e0e0e0;
-            margin-bottom: 5px;
+            background-color: #f8f9fa;
+            margin-bottom: 10px;
             padding: 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-radius: 5px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         }
         .expense-item:last-child {
             margin-bottom: 0;
+        }
+        .expense-item button {
+            background-color: #ffc107;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+        .expense-item button:hover {
+            background-color: #e0a800;
+        }
+        .expense-item button.delete {
+            background-color: #dc3545;
+        }
+        .expense-item button.delete:hover {
+            background-color: #c82333;
         }
     </style>
 </head>
@@ -85,7 +137,7 @@
     <div class="header">
         <div class="logo">Logo</div>
         <div class="menu">
-            <div>Bem vindo: {{ user.username }}!</div>
+            <div>Bem vindo: Nome Usuário</div>
             <div>Ajustes</div>
             <div>Sair</div>
         </div>
@@ -93,39 +145,39 @@
     <div class="main">
         <div class="goal">
             <span>Meta: Meta do usuário</span>
-            <button>✏️</button>
+            <button>✏️ Editar Meta</button>
         </div>
         <div class="charts">
-            <div class="chart">Gráfico</div>
-            <div class="chart">Gráfico</div>
-            <div class="chart">Gráfico</div>
-            <div class="chart">Gráfico</div>
+            <div class="chart">Gráfico 1</div>
+            <div class="chart">Gráfico 2</div>
+            <div class="chart">Gráfico 3</div>
+            <div class="chart">Gráfico 4</div>
         </div>
         <div class="expenses">
             <div class="expenses-header">
                 <span>Despesas</span>
-                <button>➕</button>
+                <button>➕ Adicionar Despesa</button>
             </div>
             <ul class="expenses-list">
                 <li class="expense-item">
                     <span>Despesa 1</span>
                     <div>
                         <button>✏️</button>
-                        <button>🗑️</button>
+                        <button class="delete">🗑️</button>
                     </div>
                 </li>
                 <li class="expense-item">
                     <span>Despesa 2</span>
                     <div>
                         <button>✏️</button>
-                        <button>🗑️</button>
+                        <button class="delete">🗑️</button>
                     </div>
                 </li>
                 <li class="expense-item">
                     <span>Despesa 3</span>
                     <div>
                         <button>✏️</button>
-                        <button>🗑️</button>
+                        <button class="delete">🗑️</button>
                     </div>
                 </li>
                 <!-- Add more expense items as needed -->

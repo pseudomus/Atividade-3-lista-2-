@@ -1,59 +1,73 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <title>Update Despesa</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             background-color: #f4f4f4;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
+            color: #333;
         }
-        .despesa-container {
+        .despesa-update-container {
             background-color: #fff;
-            padding: 20px;
+            padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
             text-align: center;
         }
-        .despesa-container h2 {
+        .despesa-update-container h2 {
             margin-bottom: 20px;
+            color: #007bff;
         }
-        .despesa-container input {
-            width: calc(100% - 20px); /* Adjusting the width to ensure no overflow */
-            padding: 10px;
+        .despesa-update-container input {
+            width: calc(100% - 20px); /* Ajusting the width to ensure no overflow */
+            padding: 12px;
             margin: 10px 0;
             border: 1px solid #ccc;
             border-radius: 5px;
+            font-size: 16px;
+            color: #333;
         }
-        .despesa-container button {
+        .despesa-update-container input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        .despesa-update-container button {
             width: 100%;
-            padding: 10px;
+            padding: 15px;
             background-color: #007bff;
             border: none;
             color: #fff;
             border-radius: 5px;
+            font-size: 16px;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
-        .despesa-container button:disabled {
+        .despesa-update-container button:disabled {
             background-color: #ccc;
+        }
+        .despesa-update-container button:hover:not(:disabled) {
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
-<div class="despesa-update-container">
-    <h2>Redefina sua despesa</h2>
-    <form method="post" action="/despesa-update">
-        <input type="text" name="Nome" placeholder="Nome" required>
-        <input type="text" name="Custo" placeholder="Custo" required>
-        <input type="text" name="Categoria" placeholder="Categoria" required>
-        <button type="submit">Redefinir</button>
-    </form>
-</div>
+    <div class="despesa-update-container">
+        <h2>Redefina sua despesa</h2>
+        <form method="post" action="/despesa-update">
+            <input type="text" name="Nome" placeholder="Nome" required>
+            <input type="text" name="Custo" placeholder="Custo" required>
+            <input type="text" name="Categoria" placeholder="Categoria" required>
+            <button type="submit">Redefinir</button>
+        </form>
+    </div>
 </body>
 </html>
